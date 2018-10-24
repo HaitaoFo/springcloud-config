@@ -1,0 +1,83 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+
+server:
+  port: 8001
+
+spring:
+  profiles: dev
+  application:
+    name: springcloud-config-dept-client #注册进erueka服务的实例名
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/clouddb01
+    username: root
+    password: 274348
+    dbcp2:
+      min-idle: 5
+      max-total: 5
+      max-wait-millis: 200
+      
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.tao.entities
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: springcloud-config-dept-client-dev #自定义服务名称
+    prefer-ip-address: true #访问路径可以显示IP地址
+
+info:
+  app.name: tao-springcloud
+  company.name: www.ucs.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
+---
+
+server:
+  port: 8001
+
+spring:
+  profiles: test
+  application:
+    name: springcloud-config-dept-client #注册进erueka服务的实例名
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/clouddb01
+    username: root
+    password: 274348
+    dbcp2:
+      min-idle: 5
+      max-total: 5
+      max-wait-millis: 200
+      
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.tao.entities
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: springcloud-config-dept-client-test #自定义服务名称
+    prefer-ip-address: true #访问路径可以显示IP地址
+
+info:
+  app.name: tao-springcloud
+  company.name: www.ucs.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
